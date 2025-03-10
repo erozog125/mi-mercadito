@@ -1,5 +1,5 @@
 @import "tailwindcss";
 
 body {
-  @apply bg-sky-950 w-screen h-screen; 
+  @apply bg-sky-950 w-screen h-screen 
 }

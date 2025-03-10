@@ -1,79 +1,62 @@
-import React from "react"
-import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa"
+import { FaGoogle } from "react-icons/fa"
+import { useNavigate } from "react-router-dom"
+import { Form } from "../../Layouts/Container/Form/Form"
+import { InputForm } from '../InputForm/InputForm'
 
 export const Login = () => {
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    alert("Formulario enviado.")
+    navigate("/market")
+  }
+
   return (
-    <form className="mt-4 w-3/4 max-w-md mx-auto bg-white p-6 rounded-lg shadow-md flex flex-col gap-4">
-      <h2 className="text-2xl font-bold text-center text-gray-800">
-        Iniciar Sesión
-      </h2>
-      <hr className="border-gray-300" />
-
-      {/* Nombre completo */}
-      <div className="flex flex-col">
-        <label htmlFor="txt-fullname" className="text-sm font-medium text-gray-700">
-          Nombre completo
-        </label>
-        <input
-          type="text"
-          id="txt-fullname"
-          placeholder="Ej: Edwin Rozo"
-          className="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-
-      {/* Correo electrónico */}
-      <div className="flex flex-col">
-        <label htmlFor="txt-email" className="text-sm font-medium text-gray-700">
-          Correo electrónico
-        </label>
-        <input
-          type="email"
-          id="txt-email"
-          placeholder="Ej: erozog125@gmail.com"
-          className="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-
-      {/* Contraseña */}
-      <div className="flex flex-col">
-        <label htmlFor="txt-password" className="text-sm font-medium text-gray-700">
-          Contraseña
-        </label>
-        <input
-          type="password"
-          id="txt-password"
-          placeholder="********"
-          className="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-
-      {/* Confirmar contraseña */}
-      <div className="flex flex-col">
-        <label htmlFor="txt-confirm-password" className="text-sm font-medium text-gray-700">
-          Confirmar contraseña
-        </label>
-        <input
-          type="password"
-          id="txt-confirm-password"
-          placeholder="********"
-          className="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-
-      <div className="w-full h-10 text-3xl text-white bg-red-400 flex justify-center items-center p-2">
-        <FaGoogle className="hover:cursor-pointer hover:shadow-lg hover:text-blue-400 transition-all duration-200" />
-        <FaFacebook className="hover:cursor-pointer hover:shadow-lg hover:text-blue-400 transition-all duration-200 ml-4 mr-4" />
-        <FaGithub className="hover:cursor-pointer hover:shadow-lg hover:text-blue-400 transition-all duration-200" />
-      </div>
-      {/* Botón de envío */}
-      <button
-        type="submit"
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-300"
+    <div className="flex min-h-screen justify-center bg-blue-900 px-4">
+      <Form
+        onSubmit={handleSubmit}
+        className="w-full max-w-xs bg-white p-6 rounded-2xl shadow-lg"
       >
-        Iniciar Sesión
-      </button>
-    </form>
-  );
-};
+        <h2 className="text-2xl font-bold mt-2 text-center text-gray-300 mb-4">
+          Iniciar sesión
+        </h2>
+        <InputForm 
+          txtLabel='Correo electrónico'
+          id='email'
+          placeholder='Ej:erozog125@gmail.com'
+        />
+        <InputForm 
+          txtLabel='Contraseña'
+          id='password'
+          placeholder='********'
+        />
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition-all"
+        >
+          Iniciar sesión
+        </button>
 
+        <hr className="my-6 border-gray-300" />
+
+        <button
+          type="button"
+          className="w-full flex items-center justify-center bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-lg shadow-sm hover:bg-gray-100 transition-all"
+        >
+          <FaGoogle className="text-red-500 mr-2" />
+          Conectar con Google
+        </button>
+
+        <div className="text-center mt-4">
+          <p className="text-sm text-gray-400">
+            ¿No tienes cuenta?{" "}
+            <a href="/signup" className="text-blue-500 hover:underline">
+              Regístrate
+            </a>
+          </p>
+        </div>
+      </Form>
+    </div>
+  )
+}
