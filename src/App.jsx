@@ -1,16 +1,20 @@
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
+import { MarketContext } from "./context/context"
 import { auth } from "./assets/firebaseConfig"
 import { Container } from "./Layouts/Container/Container"
 import { FaStoreAlt } from "react-icons/fa"
 import { Routes as Router, Route } from "react-router-dom"
 import { Home } from "./Pages/Home/Home"
-import {Market} from './Pages/Market/Market'
-
+import { Market } from './Pages/Market/Market'
 
 export const App = () => {
+
+  const { user, updateUser } = useContext(MarketContext)
+
   useEffect(() => {
     console.log("Firebase Auth:", auth)
-  }, [])
+    console.log(user)    
+  }, [user])
 
   return (
     <>
